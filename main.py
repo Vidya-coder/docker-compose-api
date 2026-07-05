@@ -5,9 +5,13 @@ import os
 app = FastAPI()
 
 # Connect to Redis
-r = redis.Redis(
-    host=os.getenv("REDIS_HOST", "localhost"),
-    port=6379,
+import redis
+import os
+
+redis_url = os.getenv("REDIS_URL")
+
+r = redis.from_url(
+    redis_url,
     decode_responses=True
 )
 
